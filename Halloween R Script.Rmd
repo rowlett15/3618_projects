@@ -1,0 +1,15 @@
+```{r}
+x <- c(1, 2, 3, 4, 5, 6)
+y <- c(6, 5, 4, 3, 2, 1)
+z <- rbind(x,y)
+rownames=c("Frankenstein", "Mummy")
+colnames=c("Snickers", "Kit-Kat", "Skittles", "Starbursts","M&Ms", "Baby Ruth")
+dimnames = list(rownames, colnames)
+M = matrix(rbind(x,y), nrow=2, ncol=6, dimnames=dimnames)
+M
+
+
+
+
+```
+
