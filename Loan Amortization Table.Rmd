@@ -1,0 +1,32 @@
+```{r}
+# First I input all of the given values for number of years, annual effective rate, and loan amount. Then I converted annual effective to monthly effective, and then calculated the payment size. 
+n <- 10
+i <- 0.03
+L <- 200000
+monthly_rate <- ((1+i)^(1/12))-1
+
+v <- 1/(1+monthly_rate)
+payment_size <- (L)/(((1-v^(n))/monthly_rate))
+
+# Then I created a row vector (0,0,L) to begin the amortization table
+x_vec <- c(0,0,L)
+x <- x_vec
+
+# Then I made a for loop that calculates interest paid, principal paid, and outstanding balance for each of the 10 years.
+for(time in 1: n+1){
+  I <- L*monthly_rate
+  P <- payment_size - I
+  L <- L - P
+  x_vec <- c(round(I, digits = 2),round(P,digits=2),round(L, digits=2))
+  x <- rbind(x, x_vec)
+}
+
+colnames=c("Interest Paid", "Principal Paid", "Outstanding Balance")
+rownames=c("0", "1", "2","3","4","5","6","7","8","9","10")
+dimnames = list(rownames,colnames)
+x <- matrix(x, nrow=11,ncol=3,dimnames=dimnames)
+x
+
+```
+
+
